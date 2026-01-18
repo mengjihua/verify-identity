@@ -1,0 +1,51 @@
+# 编译生成的字节码缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境目录
+venv/
+env/
+ENV/
+.env/
+
+# IDE 和编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统自动生成的文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 项目构建和打包产物
+dist/
+build/
+*.egg-info/
+*.egg
+
+# 日志文件
+logs/
+*.log
+
+# 数据文件和临时文件
+*.csv
+*.xlsx
+*.json
+*.tmp
+*.temp
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 本地配置文件（通常包含敏感信息）
+.env
+.local
+config.local.py

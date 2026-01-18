@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>身份识别工具</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="bg-poly"></div>
+    <div class="bg-wave"></div>
+    <div class="bg-left">
+        <div class="particle-field" id="particleField"></div>
+        <div class="floating-actions">
+            <button id="helpBtn" class="circle-btn" title="使用帮助">🔍</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="header-row">
+                <div>
+                    <h1>🔍 身份识别工具</h1>
+                    <p class="subtitle">规则匹配 + 智能分配，快速识别身份</p>
+                </div>
+                <button id="themeToggle" class="btn-ghost inline light small">🌗 切换主题</button>
+            </div>
+            
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="输入名字或别名..."
+                    class="input-field"
+                >
+                <div class="btn-group">
+                    <button id="searchBtn" class="btn-search">查询</button>
+                    <button id="luckyBtn" class="btn-ghost inline light">⚡ 随机体验</button>
+                </div>
+            </div>
+
+            <div class="captcha-trigger">
+                <button id="openCaptchaBtn" class="btn-ghost inline small">🛡️ 输入验证码</button>
+                <span class="captcha-hint">验证码仅由梦计划友情提供</span>
+            </div>
+
+            <div id="suggestions" class="suggestions hidden"></div>
+
+            <div id="result" class="result-box hidden">
+                <div class="result-actions">
+                    <div class="result-label">结果</div>
+                    <div class="result-actions-right">
+                        <div id="resultStatus" class="pill pill-muted hidden">查询中...</div>
+                        <button id="copyBtn" class="btn-ghost tiny">复制结果</button>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <p class="input-text" id="inputDisplay"></p>
+                    <p class="result-text" id="resultDisplay"></p>
+                    <p class="method-text hidden" id="methodDisplay"></p>
+                </div>
+            </div>
+
+            <div id="suggestions" class="suggestions hidden"></div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>最近查询</h2>
+                    <button id="clearHistory" class="btn-ghost">清空</button>
+                    <button id="exportHistory" class="btn-ghost">导出记录</button>
+                </div>
+                <div id="historyList" class="history-list empty-state">暂无记录</div>
+                <div class="history-pagination">
+                    <button id="prevPage" class="btn-ghost small">上一页</button>
+                    <div id="pageIndicator" class="page-indicator">0 / 0</div>
+                    <button id="nextPage" class="btn-ghost small">下一页</button>
+                </div>
+            </div>
+
+            <div class="tips">
+                <p>💡 提示：可输入姓名、昵称或别名进行查询</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-right">
+        <div class="energy-band"></div>
+        <div class="brand-tag">身份识别工具 · 智能匹配</div>
+    </div>
+
+    <div id="helpModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>使用帮助</h3>
+                <button id="helpClose" class="close-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>输入姓名/别名，命中规则显示“规则匹配”，否则按 ASCII 取余进行“智能分配”。</li>
+                    <li>可点击历史记录快速复查，支持分页与单条删除。</li>
+                    <li>点击“复制结果”可快速复制识别结果；随机体验按钮可试用示例。</li>
+                    <li>支持明/暗主题切换，页面会记住你的偏好。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="captchaModal" class="modal hidden">
+        <div class="modal-content captcha-dialog">
+            <div class="modal-header">
+                <h3>安全验证码</h3>
+                <button id="captchaModalClose" class="close-btn">×</button>
+            </div>
+            <div class="captcha-modal-body">
+                <div class="captcha-code-box">
+                    <div class="captcha-code" id="captchaNotice">验证码已生成，请向管理员获取</div>
+                </div>
+                <input
+                    type="text"
+                    id="captchaInput"
+                    placeholder="输入管理员提供的验证码"
+                    class="input-field"
+                >
+                <div id="captchaError" class="captcha-error hidden">验证码错误，请重试</div>
+                <div class="captcha-actions">
+                    <button id="captchaSubmit" class="btn-search small">验证并查询</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
